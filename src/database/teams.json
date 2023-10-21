@@ -1,7 +1,10 @@
 [
   {
     "id": 58,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Aston Villa FC",
     "shortName": "Aston Villa",
     "tla": "AST",
@@ -17,7 +20,10 @@
   },
   {
     "id": "61",
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Chelsea FC",
     "shortName": "Chelsea",
     "tla": "CHE",
@@ -33,7 +39,10 @@
   },
   {
     "id": 62,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Everton FC",
     "shortName": "Everton",
     "tla": "EVE",
@@ -49,7 +58,10 @@
   },
   {
     "id": 64,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Liverpool FC",
     "shortName": "Liverpool",
     "tla": "LIV",
@@ -65,7 +77,10 @@
   },
   {
     "id": 65,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Manchester City FC",
     "shortName": "Man City",
     "tla": "MCI",
@@ -81,7 +96,10 @@
   },
   {
     "id": 66,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Manchester United FC",
     "shortName": "Man United",
     "tla": "MUN",
@@ -97,7 +115,10 @@
   },
   {
     "id": 67,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Newcastle United FC",
     "shortName": "Newcastle",
     "tla": "NEW",
@@ -113,7 +134,10 @@
   },
   {
     "id": 73,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Tottenham Hotspur FC",
     "shortName": "Tottenham",
     "tla": "TOT",
@@ -129,7 +153,10 @@
   },
   {
     "id": 76,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Wolverhampton Wanderers FC",
     "shortName": "Wolverhampton",
     "tla": "WOL",
@@ -145,7 +172,10 @@
   },
   {
     "id": 338,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Leicester City FC",
     "shortName": "Leicester City",
     "tla": "LEI",
@@ -161,7 +191,10 @@
   },
   {
     "id": 340,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Southampton FC",
     "shortName": "Southampton",
     "tla": "SOU",
@@ -177,7 +210,10 @@
   },
   {
     "id": 346,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Watford FC",
     "shortName": "Watford",
     "tla": "WAT",
@@ -193,7 +229,10 @@
   },
   {
     "id": 356,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Sheffield United FC",
     "shortName": "Sheffield Utd",
     "tla": "SHE",
@@ -209,7 +248,10 @@
   },
   {
     "id": 397,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "Brighton & Hove Albion FC",
     "shortName": "Brighton Hove",
     "tla": "BHA",
@@ -225,7 +267,10 @@
   },
   {
     "id": 563,
-    "area": { "id": 2072, "name": "England" },
+    "area": {
+      "id": 2072,
+      "name": "England"
+    },
     "name": "West Ham United FC",
     "shortName": "West Ham",
     "tla": "WHU",
@@ -241,7 +286,10 @@
   },
   {
     "id": "7c7e0b76-6113-49c8-b1bb-8985e45c486a",
-    "area": { "id": 2072, "name": "Argentina" },
+    "area": {
+      "id": 2072,
+      "name": "Argentina"
+    },
     "name": "Club Atlético Boca Juniors",
     "shortName": "Boca Juniors",
     "tla": "BOC",

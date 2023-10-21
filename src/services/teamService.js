@@ -10,15 +10,16 @@ function getOneTeam(id) {
   return selectedTeam;
 }
 
-function createNewTeam(req, res) {
+function createNewTeam(newTeam) {
+  const createdTeam = team.createNewTeam(newTeam);
+  return createdTeam;
+}
+
+function updateTeam() {
   return;
 }
 
-function updateTeam(req, res) {
-  return;
-}
-
-function deleteTeam(req, res) {
+function deleteTeam() {
   return;
 }
 

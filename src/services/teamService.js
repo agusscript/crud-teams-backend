@@ -15,8 +15,9 @@ function createNewTeam(newTeam) {
   return createdTeam;
 }
 
-function updateTeam() {
-  return;
+function updateTeam(teamId, changes) {
+  const updatedTeam = team.updateTeam(teamId, changes);
+  return updatedTeam;
 }
 
 function deleteTeam() {

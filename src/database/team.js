@@ -7,6 +7,12 @@ function getAllTeams() {
 
 function getOneTeam(id) {
   const selectedTeam = DB.find((team) => team.id == id);
+
+  if (!selectedTeam) {
+    console.log("Team not found");
+    return;
+  }
+
   return selectedTeam;
 }
 
@@ -20,6 +26,25 @@ function createNewTeam(newTeam) {
 
   DB.push(newTeam);
   saveToDatabase(DB);
+  return newTeam;
 }
 
-module.exports = { getAllTeams, getOneTeam, createNewTeam };
+function updateTeam(teamId, changes) {
+  const selectedTeamId = DB.findIndex((team) => team.id == teamId);
+
+  if (selectedTeamId === -1) {
+    console.log("Team not found");
+    return;
+  }
+
+  const updatedTeam = {
+    ...DB[selectedTeamId],
+    ...changes,
+  };
+
+  DB[selectedTeamId] = updatedTeam;
+  saveToDatabase(DB);
+  return updatedTeam;
+}
+
+module.exports = { getAllTeams, getOneTeam, createNewTeam, updateTeam };

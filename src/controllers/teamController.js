@@ -9,7 +9,16 @@ function getAllTeams(req, res) {
 }
 
 function getOneTeam(req, res) {
-  const team = teamService.getOneTeam(req.params.id);
+  const {
+    params: { id },
+  } = req;
+
+  if (!id) {
+    console.log("Team id is required");
+    return;
+  }
+
+  const team = teamService.getOneTeam(id);
   res.send({ status: "OK", data: team });
 }
 
@@ -42,8 +51,18 @@ function createNewTeam(req, res) {
 }
 
 function updateTeam(req, res) {
-  const updatedTeam = teamService.updateTeam(req.body);
-  res.send(`<h1>Update ${req.params.id} team</h1>`);
+  const {
+    body,
+    params: { id },
+  } = req;
+
+  if (!id) {
+    console.log("Team id is required");
+    return;
+  }
+
+  const updatedTeam = teamService.updateTeam(id, body);
+  res.send({ status: "OK", data: updatedTeam });
 }
 
 function deleteTeam(req, res) {

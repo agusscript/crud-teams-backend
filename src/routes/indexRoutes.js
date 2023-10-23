@@ -10,7 +10,7 @@ router.get("/teams/:id", teamController.getOneTeam);
 
 router.post("/teams", upload.single("image"), teamController.createNewTeam);
 
-router.patch("/teams/:id", teamController.updateTeam);
+router.patch("/teams/:id", upload.single("image"), teamController.updateTeam);
 
 router.delete("/teams/:id", teamController.deleteTeam);
 

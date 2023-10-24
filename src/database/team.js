@@ -40,6 +40,7 @@ function updateTeam(teamId, changes) {
   const updatedTeam = {
     ...DB[selectedTeamId],
     ...changes,
+    lastUpdated: new Date().toISOString(),
   };
 
   DB[selectedTeamId] = updatedTeam;
@@ -47,4 +48,16 @@ function updateTeam(teamId, changes) {
   return updatedTeam;
 }
 
-module.exports = { getAllTeams, getOneTeam, createNewTeam, updateTeam };
+function deleteTeam(teamId) {
+  const selectedTeamId = DB.findIndex((team) => team.id == teamId);
+
+  if (selectedTeamId === -1) {
+    console.log("Team not found");
+    return;
+  }
+
+  DB.splice(selectedTeamId, 1);
+  saveToDatabase(DB);
+}
+
+module.exports = { getAllTeams, getOneTeam, createNewTeam, updateTeam, deleteTeam };

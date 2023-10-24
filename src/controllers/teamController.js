@@ -66,8 +66,17 @@ function updateTeam(req, res) {
 }
 
 function deleteTeam(req, res) {
-  teamService.deleteTeam(req.params.id);
-  res.send(`<h1>Delete ${req.params.id} team</h1>`);
+  const {
+    params: { id },
+  } = req;
+
+  if (!id) {
+    console.log("Team id is required");
+    return;
+  }
+
+  teamService.deleteTeam(id);
+  res.status(204).send({ status: "OK" });
 }
 
 module.exports = {

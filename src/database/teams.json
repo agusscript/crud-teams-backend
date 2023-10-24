@@ -302,5 +302,14 @@
     "clubColors": "Azul / Amarillo",
     "venue": "Alberto J. Armando",
     "lastUpdated": "2023-10-11T18:01:15.084Z"
+  },
+  {
+    "id": "bf917da2-8e0c-4b13-9321-385b997e777d",
+    "area": {
+      "id": 2072,
+      "name": "asd"
+    },
+    "name": "test delete",
+    "lastUpdated": "2023-10-24T20:16:25.319Z"
   }
 ]

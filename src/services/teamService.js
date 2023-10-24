@@ -20,8 +20,8 @@ function updateTeam(teamId, changes) {
   return updatedTeam;
 }
 
-function deleteTeam() {
-  return;
+function deleteTeam(teamId) {
+  team.deleteTeam(teamId);
 }
 
 module.exports = {

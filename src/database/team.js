@@ -9,55 +9,84 @@ function getOneTeam(id) {
   const selectedTeam = DB.find((team) => team.id == id);
 
   if (!selectedTeam) {
-    console.log("Team not found");
-    return;
+    throw {
+      status: 404,
+      message: "Team not found",
+    };
   }
 
   return selectedTeam;
 }
 
 function createNewTeam(newTeam) {
-  const isAlreadeAdded = DB.findIndex((team) => team.id == newTeam.id);
+  try {
+    const isAlreadeAdded = DB.findIndex((team) => team.id == newTeam.id);
 
-  if (isAlreadeAdded !== -1) {
-    console.log("Team already exists");
-    return;
+    if (isAlreadeAdded !== -1) {
+      throw {
+        status: 400,
+        message: `The team with id: ${newTeam.id} already exists`,
+      };
+    }
+
+    DB.push(newTeam);
+    saveToDatabase(DB);
+    return newTeam;
+  } catch (error) {
+    throw {
+      status: 500,
+      message: error,
+    };
   }
-
-  DB.push(newTeam);
-  saveToDatabase(DB);
-  return newTeam;
 }
 
 function updateTeam(teamId, changes) {
-  const selectedTeamId = DB.findIndex((team) => team.id == teamId);
+  try {
+    const selectedTeamId = DB.findIndex((team) => team.id == teamId);
 
-  if (selectedTeamId === -1) {
-    console.log("Team not found");
-    return;
+    if (selectedTeamId === -1) {
+      throw {
+        status: 404,
+        message: "Team not found",
+      };
+    }
+
+    const updatedTeam = {
+      ...DB[selectedTeamId],
+      ...changes,
+      lastUpdated: new Date().toISOString(),
+    };
+
+    DB[selectedTeamId] = updatedTeam;
+    saveToDatabase(DB);
+    return updatedTeam;
+  } catch (error) {
+    throw {
+      status: 500,
+      message: error,
+    };
   }
-
-  const updatedTeam = {
-    ...DB[selectedTeamId],
-    ...changes,
-    lastUpdated: new Date().toISOString(),
-  };
-
-  DB[selectedTeamId] = updatedTeam;
-  saveToDatabase(DB);
-  return updatedTeam;
 }
 
 function deleteTeam(teamId) {
-  const selectedTeamId = DB.findIndex((team) => team.id == teamId);
+  try {
+    const selectedTeamId = DB.findIndex((team) => team.id == teamId);
 
-  if (selectedTeamId === -1) {
-    console.log("Team not found");
-    return;
+    if (selectedTeamId === -1) {
+      throw {
+        status: 404,
+        message: "Team not found",
+      };
+    }
+
+    DB.splice(selectedTeamId, 1);
+    saveToDatabase(DB);
+  } catch (error) {
+    throw {
+      status: 500,
+      message: error,
+    };
   }
-
-  DB.splice(selectedTeamId, 1);
-  saveToDatabase(DB);
 }
 
 module.exports = { getAllTeams, getOneTeam, createNewTeam, updateTeam, deleteTeam };

@@ -62,7 +62,7 @@
       "id": 2072,
       "name": "England"
     },
-    "name": "Nuevo Castillos",
+    "name": "New Castle",
     "shortName": "Newcastle",
     "tla": "NEW",
     "crestUrl": "https://upload.wikimedia.org/wikipedia/en/5/56/Newcastle_United_Logo.svg",
@@ -73,7 +73,7 @@
     "founded": 1881,
     "clubColors": "Black / White",
     "venue": "St. James' Park",
-    "lastUpdated": "2023-10-25T22:05:56.270Z"
+    "lastUpdated": "2023-10-25T23:23:01.402Z"
   },
   {
     "id": 76,
@@ -133,27 +133,22 @@
     "lastUpdated": "2020-05-14T02:42:36Z"
   },
   {
-    "id": "0b37cccd-0bf2-4d95-a65e-6bf4875098c6",
+    "id": "71f2a7c2-11d2-436b-94c9-fe0479397deb",
     "area": {
       "id": 2072,
-      "name": "Argentina"
+      "name": "England"
     },
-    "name": "Bocaaaaa",
-    "lastUpdated": "2023-10-25T22:26:44.937Z",
-    "crestUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Escudo_del_Club_Atl%C3%A9tico_Boca_Juniors_2007.png/640px-Escudo_del_Club_Atl%C3%A9tico_Boca_Juniors_2007.png",
-    "clubColors": "Azul y oro",
-    "email": "marketing@bocajuniors.com.ar"
-  },
-  {
-    "id": "30e5e93b-7da3-402d-bf81-2daaa2b42d73",
-    "area": {
-      "id": 2072,
-      "name": "Argentina"
-    },
-    "name": "Club Atlético Patronato",
-    "shortName": "Patronato",
-    "tla": "PAT",
-    "crestUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Escudo_del_Club_Atl%C3%A9tico_Patronato_de_la_Juventud_Cat%C3%B3lica.svg/1840px-Escudo_del_Club_Atl%C3%A9tico_Patronato_de_la_Juventud_Cat%C3%B3lica.svg.png",
-    "lastUpdated": "2023-10-25T22:21:31.170Z"
+    "name": "Crystal Palace FC",
+    "shortName": "Crystal Palace",
+    "tla": "CRP",
+    "crestUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/Crystal_Palace_FC_logo_%282022%29.svg/170px-Crystal_Palace_FC_logo_%282022%29.svg.png",
+    "address": "Selhurst Road, London, SE25 5QB",
+    "phone": "0333 360 1861",
+    "website": "https://www.cpfc.co.uk/",
+    "email": "customer.service@cpfc.co.uk",
+    "founded": "1905",
+    "clubColors": "Red / Blue",
+    "venue": "Selhurst Park Stadium",
+    "lastUpdated": "2023-10-25T23:44:50.379Z"
   }
 ]

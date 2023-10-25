@@ -24,9 +24,9 @@ function getOneTeam(req, res) {
 
 function createNewTeam(req, res) {
   const { body } = req;
+
   const randomId = uuid();
   const area = new Area(2072, body.country);
-  const crestUrl = req.file && "http://localhost:8080/uploads/img/" + req.file.filename;
   const lastUpdated = new Date().toISOString();
 
   const newTeam = new Team(
@@ -35,7 +35,7 @@ function createNewTeam(req, res) {
     body.name,
     body.shortName,
     body.tla,
-    crestUrl,
+    body.crestUrl,
     body.address,
     body.phone,
     body.website,

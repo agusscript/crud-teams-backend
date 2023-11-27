@@ -12,14 +12,14 @@ class TeamController extends AbstractController {
   configureRoutes(app) {
     const ROUTE = this.ROUTE_BASE;
 
-    app.get(ROUTE, this.index.bind(this));
-    app.get(`${ROUTE}/:id`, this.view.bind(this));
-    app.post(ROUTE, this.save.bind(this));
-    app.patch(`${ROUTE}/:id`, this.save.bind(this));
+    app.get(ROUTE, this.getAll.bind(this));
+    app.get(`${ROUTE}/:id`, this.getOne.bind(this));
+    app.post(ROUTE, this.create.bind(this));
+    app.patch(`${ROUTE}/:id`, this.update.bind(this));
     app.delete(`${ROUTE}/:id`, this.delete.bind(this));
   }
 
-  async index(req, res) {
+  async getAll(req, res) {
     const teams = await this.teamService.getAll();
     const { errors, messages } = req.session;
     res.send({ status: "OK", data: teams, messages, errors });
@@ -27,7 +27,7 @@ class TeamController extends AbstractController {
     req.session.messages = [];
   }
 
-  async view(req, res) {
+  async getOne(req, res) {
     const { id } = req.params;
 
     if (!id) {
@@ -43,16 +43,30 @@ class TeamController extends AbstractController {
     }
   }
 
-  async save(req, res) {
+  async create(req, res) {
     try {
-      const team = fromDataToEntity(req.body);
-      const savedTeam = await this.teamService.save(team);
+      const { body } = req;
+      const team = fromDataToEntity(body);
+      const savedTeam = await this.teamService.create(team);
 
-      if (team.id) {
-        req.session.messages = [`The team with id ${team.id} was updated correctly`];
-      } else {
-        req.session.messages = [`The team with id ${savedTeam.id} was created correctly`];
-      }
+      req.session.messages = [`The team with id ${savedTeam.id} was created correctly`];
+      res.send({ status: "OK", data: savedTeam });
+    } catch (error) {
+      req.session.errors = [error.message, error.stack];
+      res.status(500).send({ status: "ERROR", data: error });
+    }
+  }
+
+  async update(req, res) {
+    try {
+      const {
+        body,
+        params: { id },
+      } = req;
+
+      const savedTeam = await this.teamService.update(id, body);
+
+      req.session.messages = [`The team with id ${id} was updated correctly`];
       res.send({ status: "OK", data: savedTeam });
     } catch (error) {
       req.session.errors = [error.message, error.stack];
@@ -64,7 +78,7 @@ class TeamController extends AbstractController {
     try {
       const { id } = req.params;
       const team = await this.teamService.getById(id);
-      await this.teamService.delete(team);
+      await this.teamService.delete(id);
       req.session.messages = [
         `The team ${team.name} with id ${id} was deleted correctly`,
       ];

@@ -1,6 +1,5 @@
 import TeamNotDefinedError from "./error/teamNotDefinedError.js";
 import TeamIdNotDefinedError from "./error/teamIdNotDefinedError.js";
-import Team from "../entity/team.js";
 
 class Service {
   constructor(teamRepository) {
@@ -19,20 +18,28 @@ class Service {
     return this.teamRepository.getById(id);
   }
 
-  async save(team) {
+  async create(team){
     if (team === undefined) {
       throw new TeamNotDefinedError();
     }
 
-    return this.teamRepository.save(team);
+    return this.teamRepository.create(team);
   }
 
-  async delete(team) {
-    if (!(team instanceof Team)) {
+  async update(id, changes) {
+    if (changes === undefined) {
       throw new TeamNotDefinedError();
     }
 
-    return this.teamRepository.delete(team);
+    return this.teamRepository.update(id, changes);
+  }
+
+  async delete(id) {
+    if (id === undefined) {
+      throw new TeamIdNotDefinedError();
+    }
+
+    return this.teamRepository.delete(id);
   }
 }
 

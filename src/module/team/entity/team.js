@@ -2,6 +2,7 @@ class Team {
   constructor(
     id,
     name,
+    area,
     shortName,
     tla,
     crestUrl,
@@ -15,6 +16,7 @@ class Team {
   ) {
     this.id = id;
     this.name = name;
+    this.area = area;
     this.shortName = shortName;
     this.tla = tla;
     this.crestUrl = crestUrl;

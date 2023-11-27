@@ -13,7 +13,8 @@ class AbstractTeamRepository {
 
   async getAll() {}
   async getById(id) {}
-  async save(team) {}
+  async create(team) {}
+  async update(team) {}
   async delete(id) {}
 }
 

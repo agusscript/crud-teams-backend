@@ -1,33 +1,21 @@
 import Team from "../entity/team.js";
 
-function fromDataToEntity({
-  id,
-  name,
-  "short-name": shortName,
-  tla,
-  "crest-url": crestUrl,
-  address,
-  phone,
-  website,
-  email,
-  founded,
-  "club-colors": clubColors,
-  venue,
-}) {
-  return new Team({
-    id,
-    name,
-    shortName,
-    tla,
-    crestUrl,
-    address,
-    phone,
-    website,
-    email,
-    founded,
-    clubColors,
-    venue,
-  });
+function fromDataToEntity(teamData) {
+  return new Team(
+    teamData.id,
+    teamData.name,
+    {id: 2072, name: teamData.country},
+    teamData.shortName,
+    teamData.tla,
+    teamData.crestUrl,
+    teamData.address,
+    teamData.phone,
+    teamData.website,
+    teamData.email,
+    teamData.founded,
+    teamData.clubColors,
+    teamData.venue,
+  );
 }
 
 export default fromDataToEntity;

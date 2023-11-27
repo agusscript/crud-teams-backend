@@ -1,7 +1,6 @@
 import AbstractTeamRepository from "../abstractTeamRepository.js";
 import TeamNotFoundError from "../error/teamNotFoundError.js";
 import TeamIdNotDefinedError from "../error/teamIdNotDefinedError.js";
-import Team from "../../entity/team.js";
 
 class TeamRepository extends AbstractTeamRepository {
   constructor(uuid, fileSystem, dbFilePath) {
@@ -12,7 +11,7 @@ class TeamRepository extends AbstractTeamRepository {
   }
 
   async getAll() {
-    return this.getData().map((teamData) => new Team(teamData));
+    return this.getData();
   }
 
   async getById(id) {
@@ -24,37 +23,41 @@ class TeamRepository extends AbstractTeamRepository {
       throw new TeamNotFoundError(`The team with id ${id} has not been found`);
     }
 
-    return new Team(team);
+    return team;
   }
 
-  async save(team) {
+  async create(team) {
     const teams = await this.getData();
-    let teamToSave;
-
-    if (team.id) {
-      const teamIndex = teams.findIndex((prevTeam) => prevTeam.id == team.id);
-
-      if (teamIndex === -1) {
-        throw new TeamNotFoundError(`The team with id ${team.id} could not be updated`);
-      }
-
-      teams[teamIndex] = team;
-      teamToSave = team;
-    } else {
-      teamToSave = { ...team, ...{ id: this.uuid() } };
-    }
-
+    const createdAt = new Date().toISOString();
+    const newTeam = { ...team, ...{ id: this.uuid }, ...{ lastUpdated: createdAt } };
+    teams.push(newTeam);
     this.saveData(teams);
-    return new Team(teamToSave);
+    return newTeam;
   }
 
-  async delete(team) {
-    if (!team || team.id) {
+  async update(id, changes) {
+    const teams = await this.getData();
+    const teamIndex = teams.findIndex((team) => team.id == id);
+    const updatedAt = new Date().toISOString();
+
+    const updatedTeam = {
+      ...teams[teamIndex],
+      ...changes,
+      lastUpdated: updatedAt,
+    };
+
+    teams[teamIndex] = updatedTeam;
+    this.saveData(teams);
+    return updatedTeam;
+  }
+
+  async delete(id) {
+    if (!id) {
       throw new TeamIdNotDefinedError("The team Id is not defined");
     }
 
     const teams = await this.getData();
-    const teamIndex = teams.findIndex((prevTeam) => prevTeam.id == team.id);
+    const teamIndex = teams.findIndex((prevTeam) => prevTeam.id == id);
     teams.splice(teamIndex, 1);
 
     this.saveData(teams);
@@ -75,8 +78,11 @@ class TeamRepository extends AbstractTeamRepository {
     return parsedContent;
   }
 
-  saveData(content) {
-    this.fileSystem.writeFileSync(this.dbFilePath, JSON.stringify(content));
+  async saveData(content) {
+    await this.fileSystem.writeFileSync(
+      this.dbFilePath,
+      JSON.stringify(content, null, 2)
+    );
   }
 }
 

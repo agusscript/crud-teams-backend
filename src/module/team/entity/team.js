@@ -1,7 +1,6 @@
 class Team {
   constructor(
     id,
-    area,
     name,
     shortName,
     tla,
@@ -13,10 +12,8 @@ class Team {
     founded,
     clubColors,
     venue,
-    lastUpdated
   ) {
     this.id = id;
-    this.area = area;
     this.name = name;
     this.shortName = shortName;
     this.tla = tla;
@@ -28,8 +25,7 @@ class Team {
     this.founded = founded;
     this.clubColors = clubColors;
     this.venue = venue;
-    this.lastUpdated = lastUpdated;
   }
 }
 
-module.exports = Team;
+export default Team;

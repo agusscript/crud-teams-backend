@@ -18,7 +18,7 @@ class Service {
     return this.teamRepository.getById(id);
   }
 
-  async create(team){
+  async create(team) {
     if (team === undefined) {
       throw new TeamNotDefinedError();
     }
@@ -27,6 +27,10 @@ class Service {
   }
 
   async update(id, changes) {
+    if (id === undefined) {
+      throw new TeamIdNotDefinedError();
+    }
+
     if (changes === undefined) {
       throw new TeamNotDefinedError();
     }

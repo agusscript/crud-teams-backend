@@ -1,6 +1,6 @@
+import TeamIdNotDefinedError from "../../error/teamIdNotDefinedError";
 import TeamNotFoundError from "../../error/teamNotFoundError";
 import TeamRepository from "../teamRepository";
-import { jest } from "@jest/globals";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 
@@ -30,11 +30,11 @@ describe("teamRepository", () => {
   });
 
   test("getData - should return parsed content when the file is read successfully", async () => {
-    const teams = await repository.getData();
+    const teams = await repository.getAll();
     expect(teams[0]).toEqual({ id: 1, name: "new team1" });
   });
 
-  test("getData - should return empty array when the file is not a valid JSON or the path is invalid", () => {
+  test("getData - should return empty array when the file is not a valid JSON or the path is invalid", async () => {
     const invalidJsonFilePath = "./invalidFile.json";
     const repositoryWithInvalidFile = new TeamRepository(
       uuid,
@@ -42,7 +42,7 @@ describe("teamRepository", () => {
       invalidJsonFilePath
     );
 
-    const teams = repositoryWithInvalidFile.getData();
+    const teams = await repositoryWithInvalidFile.getAll();
     expect(teams).toEqual([]);
   });
 
@@ -56,6 +56,12 @@ describe("teamRepository", () => {
     expect(async () => {
       await repository.getById(5);
     }).rejects.toThrow(TeamNotFoundError);
+  });
+
+  test("delete - should throw an error if the id parameter is not defined", () => {
+    expect(async () => {
+      await repository.delete(undefined);
+    }).rejects.toThrow(TeamIdNotDefinedError);
   });
 
   test("delete - should delete a team", () => {

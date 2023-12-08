@@ -66,10 +66,10 @@ class TeamRepository extends AbstractTeamRepository {
   }
 
   getData() {
-    const content = this.fileSystem.readFileSync(this.dbFilePath, { encoding: "utf-8" });
     let parsedContent;
-
+    
     try {
+      const content = this.fileSystem.readFileSync(this.dbFilePath, { encoding: "utf-8" });
       parsedContent = JSON.parse(content);
     } catch (error) {
       parsedContent = [];

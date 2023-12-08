@@ -39,7 +39,8 @@ class TeamController extends AbstractController {
       res.send({ status: "OK", data: team });
     } catch (error) {
       req.session.errors = [error.message, error.stack];
-      res.status(500).send({ status: "ERROR", data: error.message });
+      res.status(500);
+      res.send({ status: "ERROR", data: error.message });
     }
   }
 
@@ -53,30 +54,40 @@ class TeamController extends AbstractController {
       res.send({ status: "OK", data: savedTeam });
     } catch (error) {
       req.session.errors = [error.message, error.stack];
-      res.status(500).send({ status: "ERROR", data: error });
+      res.status(500);
+      res.send({ status: "ERROR", data: error });
     }
   }
 
   async update(req, res) {
+    const {
+      body,
+      params: { id },
+    } = req;
+
+    if (!id) {
+      throw new TeamIdNotDefinedError();
+    }
+
     try {
-      const {
-        body,
-        params: { id },
-      } = req;
-
       const savedTeam = await this.teamService.update(id, body);
-
       req.session.messages = [`The team with id ${id} was updated correctly`];
       res.send({ status: "OK", data: savedTeam });
     } catch (error) {
       req.session.errors = [error.message, error.stack];
-      res.status(500).send({ status: "ERROR", data: error });
+      res.status(500);
+      res.send({ status: "ERROR", data: error });
     }
   }
 
   async delete(req, res) {
+    const { id } = req.params;
+
+    if (!id) {
+      throw new TeamIdNotDefinedError();
+    }
+
     try {
-      const { id } = req.params;
       const team = await this.teamService.getById(id);
       await this.teamService.delete(id);
       req.session.messages = [
@@ -85,7 +96,8 @@ class TeamController extends AbstractController {
       res.status(204).send({ status: "OK" });
     } catch (error) {
       req.session.errors = [error.message, error.stack];
-      res.status(500).send({ status: "ERROR", data: error });
+      res.status(500);
+      res.send({ status: "ERROR", data: error });
     }
   }
 }

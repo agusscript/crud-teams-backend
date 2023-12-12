@@ -21,10 +21,7 @@ class TeamController extends AbstractController {
 
   async getAll(req, res) {
     const teams = await this.teamService.getAll();
-    const { errors, messages } = req.session;
-    res.send({ status: "OK", data: teams, messages, errors });
-    req.session.errors = [];
-    req.session.messages = [];
+    res.send({ status: "OK", data: teams });
   }
 
   async getOne(req, res) {
@@ -38,9 +35,8 @@ class TeamController extends AbstractController {
       const team = await this.teamService.getById(id);
       res.send({ status: "OK", data: team });
     } catch (error) {
-      req.session.errors = [error.message, error.stack];
       res.status(500);
-      res.send({ status: "ERROR", data: error.message });
+      res.send({ status: "ERROR", data: error });
     }
   }
 
@@ -49,11 +45,8 @@ class TeamController extends AbstractController {
       const { body } = req;
       const team = fromDataToEntity(body);
       const savedTeam = await this.teamService.create(team);
-
-      req.session.messages = [`The team with id ${savedTeam.id} was created correctly`];
       res.send({ status: "OK", data: savedTeam });
     } catch (error) {
-      req.session.errors = [error.message, error.stack];
       res.status(500);
       res.send({ status: "ERROR", data: error });
     }
@@ -71,10 +64,8 @@ class TeamController extends AbstractController {
 
     try {
       const savedTeam = await this.teamService.update(id, body);
-      req.session.messages = [`The team with id ${id} was updated correctly`];
       res.send({ status: "OK", data: savedTeam });
     } catch (error) {
-      req.session.errors = [error.message, error.stack];
       res.status(500);
       res.send({ status: "ERROR", data: error });
     }
@@ -88,14 +79,10 @@ class TeamController extends AbstractController {
     }
 
     try {
-      const team = await this.teamService.getById(id);
+      await this.teamService.getById(id);
       await this.teamService.delete(id);
-      req.session.messages = [
-        `The team ${team.name} with id ${id} was deleted correctly`,
-      ];
       res.status(204).send({ status: "OK" });
     } catch (error) {
-      req.session.errors = [error.message, error.stack];
       res.status(500);
       res.send({ status: "ERROR", data: error });
     }

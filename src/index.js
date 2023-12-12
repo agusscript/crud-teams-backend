@@ -12,7 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const container = configureDI();
-app.use(container.get("Session"));
 
 initTeamModule(app, container);
 
